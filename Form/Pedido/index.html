@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido</title>
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .container {
+      max-width: 960px;
+      }
+
+      #busque{
+
+      }
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+    
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+    </style>
+
+</head>
+
+
+
+<body class="bg-body-tertiary">
+
+    
+
+    <div class="container">
+        <main>
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Informações do Pedido</h4>
+                <form class="needs-validation" novalidate>
+                    <div class="row g-3">
+
+                        <div class="col-sm-6">
+                            <label for="firstName" class="form-label">Primeiro Nome</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Primeiro Nome" value="" required>
+
+                            <!-- Validação do campo -->
+                            <div class="invalid-feedback">
+                                Campo inválido
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="lastName" class="form-label">Segundo Nome</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Segundo Nome" value="" required>
+
+                            <!-- Validação do campo -->
+                            <div class="invalid-feedback">
+                                Campo inválido
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="CPF" class="form-label">CPF</label>
+                            <input type="text" class="form-control" id="CPF" placeholder="CPF" value="" required>
+
+                            <!-- Validação do campo -->
+                            <div class="invalid-feedback">
+                                CPF inválido
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input type="text" class="form-control" id="telefone" placeholder="Telefone" value="" required>
+
+                            <!-- Validação do campo -->
+                            <div class="invalid-feedback">
+                                Telefone inválido
+                            </div>
+                        </div>
+
+                        <!-- Campo do cep integrado a API viaCep-->
+                        <div class="col-12"> 
+                            <label for="cep" class="form-label">CEP</label>
+                            <input type="text" class="form-control" id="cepInput" placeholder="CEP" value="" required>
+                            <!-- <button class="w-8 btn btn-primary btn-lg" id="busque" onclick="buscarCEP()">Pesquisar</button> -->
+
+                            <div id="resultado" >
+                              <label for="logradouro"  class="form-label">Logradouro:</label>
+                              <input type="text" id="logradouro" disabled class="form-control">
+                              <br>
+                              <label for="bairro" class="form-label">Bairro:</label>
+                              <input type="text" id="bairro" disabled class="form-control">
+                              <br>
+                              <label for="cidade"  class="form-label">Cidade:</label>
+                              <input type="text" id="cidade" disabled class="form-control">
+                              <br>
+                              <label for="estado"  class="form-label">Estado:</label>
+                              <input type="text" id="estado" disabled class="form-control">
+                              <br>
+                              <div class="error" id="error"></div>
+                          </div>
+                      
+          
+                        </div>
+                    </div>
+
+
+                    <!--Pode até integrar ao campos do Dyna, caso fosse criar + tipos de campos -->
+                    <div class="col-md-5"> 
+                            <label for="Tipos" class="form-label">Tipos de Produtos</label>
+                            <select class="form-select" id="tipos" required>
+                                <option value="">Outros</option>
+                                <option>Roupas</option>
+                                <option>Sapatos</option>
+                                <option>Acessórios</option>
+                                <option>Utensilíos</option>
+                                <option>Equipamentos Tecnológicos</option>
+                            </select>
+        
+                            <!-- Validação do campo -->
+                            <div class="invalid-feedback">
+                                Selecione o tipo do Produto
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+          <div id="alerta"></div>
+          <button class="w-100 btn btn-primary btn-lg" type="submit" id="butao">Enviar</button>
+                
+        </form>
+  </main>
+ </div>
+
+<!-- Chamando o JS para a validação -->
+<script src="assets/dist/js/campos.js"></script>
+<script src="assets/dist/js/consultaCep.js"></script>
+
+<!-- Chamando a validação para o butão -->
+<script>
+    document.getElementById('cepInput').addEventListener('click', buscarCEP);
+    const cepInput = document.getElementById('cepInput');
+    cepInput.addEventListener('input', buscarCEP);
+
+
+
+</script>
+</body>
+</html>
