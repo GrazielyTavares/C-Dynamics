@@ -21,23 +21,7 @@ function ValidarCampos(alerta){
     var CPF = document.getElementById('CPF').value.trim();
     var telefone = document.getElementById('telefone').value;
     var tiposP = document.getElementById('tipos').value;
-    // const alerta = document.getElementById('alerta')
-    // const alertValid = document.getElementById('butao');
-
-
-    // var validade = true;
-
-    // //criação do alerta
-    // const appAlert = (message, type) => {
-    //     const add = document.createElement('div')
-    //     add.innerHTML = ` 
-    //         <div class="alert alert-${type} alert-dismissible" role="alert">,
-    //           <div>${message}</div>
-    //           <button type="button" class="btn-close" data-bs-dismiss="alert arial-label="Close"></button>
-    //         </div>  `;
-
-    //     alerta.appendChild(add);
-    // } 
+   
 
     // Validação dos campos
     if(fistName === '' && lastName === ''){
